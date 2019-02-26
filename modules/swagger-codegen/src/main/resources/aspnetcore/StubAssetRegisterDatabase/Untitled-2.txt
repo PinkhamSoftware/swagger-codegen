@@ -1,0 +1,1 @@
+psql --host=<yourserver> --port=<port> --username=<server admin login> --dbname=<database name>

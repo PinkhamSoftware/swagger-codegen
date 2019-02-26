@@ -133,6 +133,29 @@ namespace {{packageName}}.Models
         #pragma warning restore 1591
         #endregion Operators
     }
+
+    /// <summary>
+    /// {{description}}
+    /// </summary>
+    public partial class {{classname}}CsvModel : {{#parent}}{{{parent}}}, {{/parent}}
+    { {{#vars}}{{#isEnum}}{{>enumClass}}{{/isEnum}}{{#items.isEnum}}{{#items}}{{>enumClass}}{{/items}}{{/items.isEnum}}
+        /// <summary>
+        /// {{^description}}Gets or Sets {{{name}}}{{/description}}{{#description}}{{description}}{{/description}}
+        /// </summary>
+        {{#description}}
+        /// <value>{{description}}</value>
+        {{/description}}
+        [Name("{{baseName}}")]
+        {{#isEnum}}
+        public {{{datatypeWithEnum}}}{{#isEnum}}{{^isContainer}}?{{/isContainer}}{{/isEnum}} {{name}} { get; set; }
+        {{/isEnum}}
+        {{^isEnum}}
+        public {{{datatype}}} {{name}} { get; {{#isReadOnly}}private {{/isReadOnly}}set; }
+        {{/isEnum}}
+        {{#hasMore}}
+        {{/hasMore}}
+        {{/vars}}
+    }
 {{/isEnum}}
 {{/model}}
 {{/models}}

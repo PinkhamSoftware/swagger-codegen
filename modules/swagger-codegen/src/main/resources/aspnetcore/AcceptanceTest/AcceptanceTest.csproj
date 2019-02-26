@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
+        <TargetFramework>netcoreapp2.1</TargetFramework>
+        <RootNamespace>AssetRegisterTests</RootNamespace>
+
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Compile Remove="HomesEngland\ConsoleImporter\**" />
+      <Compile Remove="HomesEngland\DataGenerator\**" />
+      <EmbeddedResource Remove="HomesEngland\ConsoleImporter\**" />
+      <EmbeddedResource Remove="HomesEngland\DataGenerator\**" />
+      <None Remove="HomesEngland\ConsoleImporter\**" />
+      <None Remove="HomesEngland\DataGenerator\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="FluentAssertions" Version="5.5.3" />
+        <PackageReference Include="FluentSimulator" Version="1.0.33" />
+        <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="2.1.1" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
+        <PackageReference Include="Moq" Version="4.10.0" />
+        <PackageReference Include="NUnit" Version="3.11.0" />
+        <PackageReference Include="NUnit3TestAdapter" Version="3.11.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\DependencyInjection\DependencyInjection.csproj" />
+      <ProjectReference Include="..\HomesEngland.Gateway.DataGenerator\HomesEngland.Gateway.DataGenerator.csproj" />
+      <ProjectReference Include="..\HomesEngland.Gateway\HomesEngland.Gateway.csproj" />
+      <ProjectReference Include="..\HomesEngland\HomesEngland.csproj" />
+      <ProjectReference Include="..\Main\Main.csproj" />
+      <ProjectReference Include="..\TestHelper\TestHelper.csproj" />
+      <ProjectReference Include="..\WebApi\WebApi.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="HomesEngland\Controller\AssetRegisterVersions\Post\asset-register-1-rows.csv">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="HomesEngland\Controller\AssetRegisterVersions\Post\asset-register-10-rows.csv">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="HomesEngland\Controller\AssetRegisterVersions\Post\asset-register-5-rows.csv">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+</Project>

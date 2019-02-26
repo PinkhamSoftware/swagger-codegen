@@ -1,0 +1,27 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:Boolean x:Key="/Default/CodeStyle/Naming/CSharpAutoNaming/IsNamingAutoDetectionCompleted/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeStyle/Naming/CSharpAutoNaming/IsNotificationDisabled/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeStyle/Naming/CSharpNaming/ApplyAutoDetectedRules/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/AutoDetectedNamingRules/=Interfaces/@EntryIndexedValue">&lt;Policy Inspect="True" Prefix="I" Suffix="" Style="AaBb" /&gt;</s:String>
+	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/AutoDetectedNamingRules/=Locals/@EntryIndexedValue">&lt;Policy Inspect="True" Prefix="" Suffix="" Style="aaBb" /&gt;</s:String>
+	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/AutoDetectedNamingRules/=Method/@EntryIndexedValue">&lt;Policy Inspect="True" Prefix="Given" Suffix="" Style="AaBb_AaBb"&gt;&lt;ExtraRule Prefix="" Suffix="" Style="AaBb" /&gt;&lt;/Policy&gt;</s:String>
+	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/AutoDetectedNamingRules/=Parameters/@EntryIndexedValue">&lt;Policy Inspect="True" Prefix="" Suffix="" Style="aaBb" /&gt;</s:String>
+	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/AutoDetectedNamingRules/=PrivateInstanceFields/@EntryIndexedValue">&lt;Policy Inspect="True" Prefix="_" Suffix="" Style="aaBb" /&gt;</s:String>
+	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/AutoDetectedNamingRules/=Property/@EntryIndexedValue">&lt;Policy Inspect="True" Prefix="" Suffix="" Style="AaBb" /&gt;</s:String>
+	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/AutoDetectedNamingRules/=PublicFields/@EntryIndexedValue">&lt;Policy Inspect="True" Prefix="_" Suffix="" Style="aaBb" /&gt;</s:String>
+	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/AutoDetectedNamingRules/=TypeParameters/@EntryIndexedValue">&lt;Policy Inspect="True" Prefix="T" Suffix="" Style="AaBb" /&gt;</s:String>
+	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/AutoDetectedNamingRules/=TypesAndNamespaces/@EntryIndexedValue">&lt;Policy Inspect="True" Prefix="" Suffix="" Style="AaBb" /&gt;</s:String>
+	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;&#xD;
+  &lt;Assembly Path="C:\Users\jeffpinkham\.nuget\packages\sentry.aspnetcore\1.0.1-beta\lib\netstandard2.0\Sentry.AspNetCore.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.netcore.app\2.1.0\ref\netcoreapp2.1\System.Collections.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\Users\jeffpinkham\.nuget\packages\microsoft.netcore.app\2.1.5\ref\netcoreapp2.1\System.Collections.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\Users\jeffpinkham\.nuget\packages\microsoft.aspnetcore.mvc.core\2.1.3\lib\netstandard2.0\Microsoft.AspNetCore.Mvc.Core.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\Users\jeffpinkham\.nuget\packages\dapper.simplecrud\2.0.1\lib\netstandard2.0\Dapper.SimpleCRUD.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\Users\jeffpinkham\.nuget\packages\fluentvalidation\8.0.100\lib\netstandard2.0\FluentValidation.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\Users\jeffpinkham\.nuget\packages\peregrinedb\1.0.12\lib\netstandard1.3\PeregrineDb.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\Users\jeffpinkham\.nuget\packages\fluentassertions\5.5.0\lib\netcoreapp2.0\FluentAssertions.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\Users\jeffpinkham\.nuget\packages\fluentvalidation\8.0.101\lib\netstandard2.0\FluentValidation.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.extensions.logging.abstractions\2.1.1\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\Users\jeffpinkham\.nuget\packages\microsoft.netcore.app\2.1.6\ref\netcoreapp2.1\System.Runtime.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\Users\jeffpinkham\.nuget\packages\notify\2.3.0\lib\netcoreapp2.0\Notify.dll" /&gt;&#xD;
+&lt;/AssemblyExplorer&gt;</s:String></wpf:ResourceDictionary>
