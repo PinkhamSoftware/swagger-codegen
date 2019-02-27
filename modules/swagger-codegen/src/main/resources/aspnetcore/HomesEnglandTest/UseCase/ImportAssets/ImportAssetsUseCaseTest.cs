@@ -32,7 +32,7 @@ namespace HomesEnglandTest.UseCase.ImportAssets
 
         private void StubCreateAssetUseCase()
         {
-            var createAssetResponse = new CreateAssetResponse
+            var createAssetResponse = new CreateDocumentResponse
             {
                 Document = new DocumentOutputModel
                 {
@@ -42,12 +42,12 @@ namespace HomesEnglandTest.UseCase.ImportAssets
 
             _mockBulkCreateAssetUseCase
                 .Setup(s => s.ExecuteAsync(It.IsAny<IList<CreateDocumentRequest>>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(new List<CreateAssetResponse>{createAssetResponse});
+                .ReturnsAsync(new List<CreateDocumentResponse>{createAssetResponse});
         }
 
         private void StubCreateAssetUseCaseWithAddress(string address, string address2)
         {
-            var assetResponse = new CreateAssetResponse
+            var assetResponse = new CreateDocumentResponse
             {
                 Document = new DocumentOutputModel
                 {
@@ -55,7 +55,7 @@ namespace HomesEnglandTest.UseCase.ImportAssets
                 }
             };
 
-            var assetResponse2 = new CreateAssetResponse
+            var assetResponse2 = new CreateDocumentResponse
             {
                 Document = new DocumentOutputModel
                 {
@@ -67,7 +67,7 @@ namespace HomesEnglandTest.UseCase.ImportAssets
                 .Setup(s => s.ExecuteAsync(
                     It.Is<IList<CreateDocumentRequest>>(req => req[0].Address.Equals(address) || req[1].Address.Equals(address2)),
                     It.IsAny<CancellationToken>()))
-                .ReturnsAsync(new List<CreateAssetResponse> { assetResponse, assetResponse2 });
+                .ReturnsAsync(new List<CreateDocumentResponse> { assetResponse, assetResponse2 });
         }
 
         private void StubFactoryWithAddress(string csvLine, string address)
@@ -140,7 +140,7 @@ namespace HomesEnglandTest.UseCase.ImportAssets
             [TestCase("Woof")]
             public async Task ThenReturnTheCreatedAssets(string input)
             {
-                var createAssetResponse = new CreateAssetResponse
+                var createAssetResponse = new CreateDocumentResponse
                 {
                     Document = new DocumentOutputModel
                     {
@@ -150,7 +150,7 @@ namespace HomesEnglandTest.UseCase.ImportAssets
 
                 _mockBulkCreateAssetUseCase
                     .Setup(s => s.ExecuteAsync(It.IsAny<IList<CreateDocumentRequest>>(), It.IsAny<CancellationToken>()))
-                    .ReturnsAsync(new List<CreateAssetResponse>{createAssetResponse});
+                    .ReturnsAsync(new List<CreateDocumentResponse>{createAssetResponse});
 
                 var request = new ImportAssetsRequest
                 {

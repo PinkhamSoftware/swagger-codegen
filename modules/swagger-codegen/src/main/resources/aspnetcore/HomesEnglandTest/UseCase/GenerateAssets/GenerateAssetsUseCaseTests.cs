@@ -37,10 +37,10 @@ namespace HomesEnglandTest.UseCase.GenerateAssets
             {
                 Records = recordCount
             };
-            var list = new List<CreateAssetResponse>();
+            var list = new List<CreateDocumentResponse>();
             for (int i = 0; i < recordCount; i++)
             {
-                list.Add(new CreateAssetResponse());
+                list.Add(new CreateDocumentResponse());
             }
             _mockUseCase
                 .Setup(s => s.ExecuteAsync(It.IsAny<IList<CreateDocumentRequest>>(), It.IsAny<CancellationToken>()))

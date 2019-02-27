@@ -23,7 +23,7 @@ namespace HomesEngland.UseCase.GenerateDocument.Impl
         {
             IList<CreateDocumentRequest> createAssetRequests = GenerateCreateAssetRequest(requests.Records.Value);
 
-            IList<CreateAssetResponse> response = await _createAssetRegisterVersionUseCase.ExecuteAsync(createAssetRequests, cancellationToken)
+            IList<CreateDocumentResponse> response = await _createAssetRegisterVersionUseCase.ExecuteAsync(createAssetRequests, cancellationToken)
                 .ConfigureAwait(false);
 
             var generateAssetsResponse = new GenerateAssetsResponse

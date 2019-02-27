@@ -10,17 +10,17 @@ namespace TestHelper
     {
         public static int GetAssetRegisterVersionId(this IList<IDocument> assets)
         {
-            return assets.Select(s => s.AssetRegisterVersionId.Value).FirstOrDefault();
+            return assets.Select(s => s.DocumentVersionId.Value).FirstOrDefault();
         }
 
         public static int GetAssetRegisterVersionId(this IList<DocumentOutputModel> assets)
         {
-            return assets.Select(s => s.AssetRegisterVersionId.Value).FirstOrDefault();
+            return assets.Select(s => s.DocumentVersionId.Value).FirstOrDefault();
         }
 
-        public static int GetAssetRegisterVersionId(this IList<CreateAssetResponse> assets)
+        public static int GetAssetRegisterVersionId(this IList<CreateDocumentResponse> assets)
         {
-            return assets.Select(s => s.Document.AssetRegisterVersionId.Value).FirstOrDefault();
+            return assets.Select(s => s.Document.DocumentVersionId.Value).FirstOrDefault();
         }
     }
 }

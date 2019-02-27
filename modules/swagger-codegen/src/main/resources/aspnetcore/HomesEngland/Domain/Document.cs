@@ -11,13 +11,17 @@ namespace HomesEngland.Domain
         public Document() { }
         public Document(CreateDocumentRequest request)
         {
-            //map to document
+            // todo map to document
         }
 
         public Document(IDocument request)
         {
             Id = request.Id;
-            //map to document
+            //todo map to document
         }
+
+        public int? DocumentVersionId { get; set; }
+
+        //todo generate vars
     }
 }

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using HomesEngland.Domain;
+using HomesEngland.Gateway.AssetRegisterVersions;
 using HomesEngland.UseCase.CreateDocumentVersion.Models;
 using HomesEngland.UseCase.GetDocumentVersions.Models;
 
@@ -10,11 +11,11 @@ namespace HomesEngland.UseCase.GetDocumentVersions.Impl
 {
     public class GetDocumentVersionsUseCase: IGetDocumentVersionsUseCase
     {
-        private readonly IAssetRegisterVersionSearcher _assetRegisterVersionSearcher;
+        private readonly IDocumentVersionSearcher _documentVersionSearcher;
 
-        public GetDocumentVersionsUseCase(IAssetRegisterVersionSearcher assetRegisterVersionSearcher)
+        public GetDocumentVersionsUseCase(IDocumentVersionSearcher documentVersionSearcher)
         {
-            _assetRegisterVersionSearcher = assetRegisterVersionSearcher;
+            _documentVersionSearcher = documentVersionSearcher;
         }
         public async Task<GetAssetRegisterVersionsResponse> ExecuteAsync(GetAssetRegisterVersionsRequest requests, CancellationToken cancellationToken)
         {
@@ -23,7 +24,7 @@ namespace HomesEngland.UseCase.GetDocumentVersions.Impl
             if (requests.Page != null) query.Page = requests.Page;
             if (requests.PageSize != null) query.PageSize = requests.PageSize;
 
-            var response = await _assetRegisterVersionSearcher.Search(query, cancellationToken).ConfigureAwait(false) 
+            var response = await _documentVersionSearcher.Search(query, cancellationToken).ConfigureAwait(false) 
                ?? new PagedResults<IDocumentVersion>
                {
                    Results = new List<IDocumentVersion>(),

@@ -19,8 +19,8 @@ namespace HomesEngland.Gateway.Migrations
             _databaseUrl = System.Environment.GetEnvironmentVariable("DATABASE_URL");
         }
 
-        public DbSet<AssetRegisterVersionEntity> AssetRegisterVersions { get; set; }
-        public DbSet<DocumentEntity> Assets { get; set; }
+        public DbSet<DocumentVersionEntity> DocumentVersions { get; set; }
+        public DbSet<DocumentEntity> Documents { get; set; }
         public DbSet<AuthenticationTokenEntity> AuthenticationTokens { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -28,7 +28,7 @@ namespace HomesEngland.Gateway.Migrations
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<AssetRegisterVersionEntity>()
+            modelBuilder.Entity<DocumentVersionEntity>()
                 .HasMany<DocumentEntity>(b=> b.Assets)
                 .WithOne();
         }

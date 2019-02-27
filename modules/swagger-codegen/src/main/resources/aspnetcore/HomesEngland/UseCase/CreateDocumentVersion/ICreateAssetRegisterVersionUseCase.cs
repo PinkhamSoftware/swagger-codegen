@@ -4,7 +4,7 @@ using HomesEngland.UseCase.CreateAsset.Models;
 
 namespace HomesEngland.UseCase.CreateDocumentVersion
 {
-    public interface ICreateAssetRegisterVersionUseCase : IAsyncUseCaseTask<IList<CreateDocumentRequest>, IList<CreateAssetResponse>>
+    public interface ICreateAssetRegisterVersionUseCase : IAsyncUseCaseTask<IList<CreateDocumentRequest>, IList<CreateDocumentResponse>>
     {
     }
 }

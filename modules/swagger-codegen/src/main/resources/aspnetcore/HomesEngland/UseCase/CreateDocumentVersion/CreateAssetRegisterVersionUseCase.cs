@@ -21,7 +21,7 @@ namespace HomesEngland.UseCase.CreateDocumentVersion
             _assetRegisterVersionCreator = assetRegisterVersionCreator;
         }
 
-        public async Task<IList<CreateAssetResponse>> ExecuteAsync(IList<CreateDocumentRequest> requests, CancellationToken cancellationToken)
+        public async Task<IList<CreateDocumentResponse>> ExecuteAsync(IList<CreateDocumentRequest> requests, CancellationToken cancellationToken)
         {
             List<IDocument> assets = requests.Select(s => new Document(s) as IDocument).ToList();
 
@@ -35,7 +35,7 @@ namespace HomesEngland.UseCase.CreateDocumentVersion
             if (result == null)
                 throw new CreateAssetRegisterVersionException();
             Console.WriteLine($" Inserting AssetRegisterVersion Finish {DateTime.UtcNow.TimeOfDay.ToString("g")}");
-            List<CreateAssetResponse> responses = result.Assets.Select(s => new CreateAssetResponse
+            List<CreateDocumentResponse> responses = result.Assets.Select(s => new CreateDocumentResponse
             {
                 Document = new DocumentOutputModel(s)
             }).ToList();

@@ -17,7 +17,7 @@ namespace HomesEngland.UseCase.CreateAsset.Impl
             _documentCreator = documentCreator;
         }
 
-        public async Task<CreateAssetResponse> ExecuteAsync(CreateDocumentRequest requests, CancellationToken cancellationToken)
+        public async Task<CreateDocumentResponse> ExecuteAsync(CreateDocumentRequest requests, CancellationToken cancellationToken)
         {
             IDocument document = new Document(requests);
 
@@ -26,7 +26,7 @@ namespace HomesEngland.UseCase.CreateAsset.Impl
                 throw new CreateAssetException();
             
             var assetOutputModel = new DocumentOutputModel(createdAsset);
-            var createdAssetResponse = new CreateAssetResponse
+            var createdAssetResponse = new CreateDocumentResponse
             {
                 Document = assetOutputModel
             };

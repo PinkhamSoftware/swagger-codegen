@@ -8,14 +8,12 @@ using HomesEngland.Domain;
 using HomesEngland.Domain.Impl;
 using HomesEngland.Gateway.AssetRegisterVersions;
 using HomesEngland.Gateway.Assets;
-using HomesEngland.Gateway.Assets.Developer;
-using HomesEngland.Gateway.Assets.Region;
 using HomesEngland.Gateway.Migrations;
 using Microsoft.EntityFrameworkCore;
 
 namespace HomesEngland.Gateway.Sql
 {
-    public class EfDocumentGateway : IGateway<IDocument, int>, IDocumentReader, IDocumentCreator, IAssetSearcher, IAssetAggregator, IAssetRegionLister, IAssetDeveloperLister
+    public class EfDocumentGateway : IGateway<IDocument, int>, IDocumentReader, IDocumentCreator//,todo re-add document searcher IAssetSearcher
     {
         private readonly string _databaseUrl; 
 
@@ -33,7 +31,7 @@ namespace HomesEngland.Gateway.Sql
                 context.Add(assetEntity);
                 context.SaveChanges();
                 entity.Id = assetEntity.Id;
-                IDocument foundDocument = context.Assets.Find(assetEntity.Id);
+                IDocument foundDocument = context.Documents.Find(assetEntity.Id);
                 return Task.FromResult(foundDocument);
             }
         }
@@ -43,13 +41,13 @@ namespace HomesEngland.Gateway.Sql
             using (var context = new DocumentContext(_databaseUrl))
             {
                 context.ChangeTracker.AutoDetectChangesEnabled = false;
-                IDocument entity = context.Assets.Find(index);
+                IDocument entity = context.Documents.Find(index);
 
                 return Task.FromResult(entity);
             }
         }
 
-        public Task<IPagedResults<IDocument>> Search(IAssetPagedSearchQuery searchRequest, CancellationToken cancellationToken)
+        public Task<IPagedResults<IDocument>> Search(IDocumentPagedSearchQuery searchRequest, CancellationToken cancellationToken)
         {
             using (var context = new DocumentContext(_databaseUrl))
             {
@@ -72,93 +70,18 @@ namespace HomesEngland.Gateway.Sql
             }
         }
 
-        private IQueryable<DocumentEntity> GenerateFilteringCriteria(DocumentContext context, IAssetSearchQuery searchRequest)
+        private IQueryable<DocumentEntity> GenerateFilteringCriteria(DocumentContext context, IDocumentSearchQuery searchRequest)
         {
-            IQueryable<DocumentEntity> queryable = context.Assets;
+            IQueryable<DocumentEntity> queryable = context.Documents;
 
-            if(!searchRequest.AssetRegisterVersionId.HasValue)
-                throw new ArgumentNullException("AssetRegisterVersionId is null");
+            if(!searchRequest.DocumentVersionId.HasValue)
+                throw new ArgumentNullException("DocumentVersionId is null");
 
-            queryable = queryable.Where(w => w.AssetRegisterVersionId.Equals(searchRequest.AssetRegisterVersionId));
+            queryable = queryable.Where(w => w.DocumentVersionId.Equals(searchRequest.DocumentVersionId));
 
-            if (!string.IsNullOrEmpty(searchRequest.Address) && !string.IsNullOrWhiteSpace(searchRequest.Address))
-            {
-                queryable = queryable.Where(w =>
-                    EF.Functions.Like(w.Address.ToLower(), $"%{searchRequest.Address}%".ToLower()));
-            }
-
-            if(!string.IsNullOrEmpty(searchRequest.Region) && !string.IsNullOrWhiteSpace(searchRequest.Region))
-            {
-                queryable = queryable.Where(w => EF.Functions.Like(w.ImsOldRegion.ToLower(), $"%{searchRequest.Region}%".ToLower()));
-            }
-
-            if (!string.IsNullOrEmpty(searchRequest.Developer) && !string.IsNullOrWhiteSpace(searchRequest.Developer))
-            {
-                queryable = queryable.Where(w => EF.Functions.Like(w.DevelopingRslName.ToLower(), $"%{searchRequest.Developer}%".ToLower()));
-            }
-
-            if (searchRequest.SchemeId.HasValue && searchRequest?.SchemeId.Value > 0)
-            {
-                queryable = queryable.Where(w => w.SchemeId.HasValue && w.SchemeId == searchRequest.SchemeId.Value);
-            }
-
-            queryable = queryable.OrderByDescending(w => w.SchemeId);
+            queryable = queryable.OrderByDescending(w => w.Id);
 
             return queryable;
-        }
-
-        public Task<IAssetAggregation> Aggregate(IAssetSearchQuery searchRequest, CancellationToken cancellationToken)
-        {
-            using (var context = new DocumentContext(_databaseUrl))
-            {
-                var filteringCriteria = GenerateFilteringCriteria(context, searchRequest);
-
-                var aggregatedData = filteringCriteria.Select(s => new
-                {
-                    AssetValue = s.AgencyFairValue,
-                    MoneyPaidOut = s.AgencyEquityLoan,
-                    SchemeId = s.SchemeId,
-                });
-
-                decimal? uniqueCount = aggregatedData?.Select(w => w.SchemeId).Distinct().Count();
-                decimal? moneyPaidOut = aggregatedData?.Select(w => w.MoneyPaidOut).Sum(s => s);
-                decimal? assetValue = aggregatedData?.Select(w => w.AssetValue).Sum(s => s);
-
-                IAssetAggregation assetAggregates = new AssetAggregation
-                {
-                    UniqueRecords = uniqueCount,
-                    AssetValue = assetValue,
-                    MoneyPaidOut = moneyPaidOut,
-                    MovementInAssetValue = assetValue - moneyPaidOut
-                };
-                return Task.FromResult(assetAggregates);
-            }
-        }
-
-        public Task<IList<AssetRegion>> ListRegionsAsync(CancellationToken cancellationToken)
-        {
-            using (var context = new DocumentContext(_databaseUrl))
-            {
-                IList<AssetRegion> results = context.Assets.Select(s => new AssetRegion
-                {
-                    Name = s.ImsOldRegion
-                }).Distinct().ToList();
-
-                return Task.FromResult(results);
-            }
-        }
-
-        public Task<IList<AssetDeveloper>> ListDevelopersAsync(CancellationToken cancellationToken)
-        {
-            using (var context = new DocumentContext(_databaseUrl))
-            {
-                IList<AssetDeveloper> results = context.Assets.Select(s => new AssetDeveloper
-                {
-                    Name = s.DevelopingRslName
-                }).Distinct().ToList();
-
-                return Task.FromResult(results);
-            }
         }
     }
 }
