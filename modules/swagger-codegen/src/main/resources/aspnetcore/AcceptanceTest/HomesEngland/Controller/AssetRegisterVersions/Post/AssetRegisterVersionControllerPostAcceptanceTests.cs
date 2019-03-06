@@ -12,8 +12,10 @@ using HomesEngland.Gateway.AccessTokens;
 using HomesEngland.Gateway.Notifications;
 using HomesEngland.BackgroundProcessing;
 using HomesEngland.Gateway.Migrations;
-using HomesEngland.UseCase.GetAssetRegisterVersions;
-using HomesEngland.UseCase.ImportAssets;
+
+using HomesEngland.UseCase.GetDocumentVersions;
+
+using HomesEngland.UseCase.ImportDocuments;
 using Main;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Internal;

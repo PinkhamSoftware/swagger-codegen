@@ -51,12 +51,12 @@ namespace HomesEngland.Gateway.Test
                 
                 var createdAssets = await _classUnderTest.CreateAsync(new DocumentVersion
                 {
-                    Assets = assets
+                    Documents = assets
                 }, CancellationToken.None).ConfigureAwait(false);
                 //act
                 for (int i = 0; i < count; i++)
                 {
-                    var createdAsset = createdAssets.Assets.ElementAtOrDefault(i);
+                    var createdAsset = createdAssets.Documents.ElementAtOrDefault(i);
                     var readAsset = await _gateway.ReadAsync(createdAsset.Id).ConfigureAwait(false);
                     //assert
                     createdAsset.Id.Should().NotBe(0);
@@ -84,15 +84,15 @@ namespace HomesEngland.Gateway.Test
 
                 var createdAssets = await _classUnderTest.CreateAsync(new DocumentVersion
                 {
-                    Assets = assets,
+                    Documents = assets,
                 }, CancellationToken.None).ConfigureAwait(false);
                 //act
                 for (int i = 0; i < count; i++)
                 {
-                    var createdAsset = createdAssets.Assets.ElementAtOrDefault(i);
+                    var createdAsset = createdAssets.Documents.ElementAtOrDefault(i);
                     var readAsset = await _gateway.ReadAsync(createdAsset.Id).ConfigureAwait(false);
                     //assert
-                    readAsset.AssetRegisterVersionId.Should().NotBeNull();
+                    readAsset.DocumentVersionId.Should().NotBeNull();
                 }
 
                 trans.Dispose();
@@ -117,16 +117,16 @@ namespace HomesEngland.Gateway.Test
                 var timeStamp = DateTime.UtcNow;
                 var assetRegisterVersion = await _classUnderTest.CreateAsync(new DocumentVersion
                 {
-                    Assets = assets,
+                    Documents = assets,
                     ModifiedDateTime = timeStamp
                 }, CancellationToken.None).ConfigureAwait(false);
                 //act
                 for (int i = 0; i < count; i++)
                 {
-                    var createdAsset = assetRegisterVersion.Assets.ElementAtOrDefault(i);
+                    var createdAsset = assetRegisterVersion.Documents.ElementAtOrDefault(i);
                     var readAsset = await _gateway.ReadAsync(createdAsset.Id).ConfigureAwait(false);
                     //assert
-                    readAsset.AssetRegisterVersionId.Should().NotBeNull();
+                    readAsset.DocumentVersionId.Should().NotBeNull();
                 }
 
                 trans.Dispose();

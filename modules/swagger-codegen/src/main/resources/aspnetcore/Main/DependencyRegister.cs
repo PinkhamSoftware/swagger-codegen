@@ -58,7 +58,7 @@ namespace Main
 
             ExportSingletonTypeDependencies((type, provider) => serviceCollection.AddTransient(type, provider));
 
-            serviceCollection.AddEntityFrameworkNpgsql().AddDbContext<AssetRegisterContext>();
+            serviceCollection.AddEntityFrameworkNpgsql().AddDbContext<DocumentContext>();
 
             
             serviceCollection.AddHostedService<BackgroundProcessor>();
@@ -76,7 +76,7 @@ namespace Main
                     databaseUrl));
             RegisterExportedDependency<IGetDocumentUseCase, GetDocumentUseCase>();
             RegisterExportedDependency<IDocumentReader>(() => new EfDocumentGateway(databaseUrl));
-            RegisterExportedDependency<AssetRegisterContext>(() => new AssetRegisterContext(databaseUrl));
+            RegisterExportedDependency<DocumentContext>(() => new DocumentContext(databaseUrl));
             
             RegisterExportedDependency<IDocumentCreator>(() => new EfDocumentGateway(databaseUrl));
             RegisterExportedDependency<IGateway<IDocument, int>>(() => new EfDocumentGateway(databaseUrl));
@@ -119,7 +119,7 @@ namespace Main
             RegisterExportedDependency<IDocumentVersionCreator>(() =>
                 new EFDocumentVersionGateway(databaseUrl));
             RegisterExportedDependency<IGetDocumentVersionsUseCase, GetDocumentVersionsUseCase>();
-            RegisterExportedDependency<IAssetRegisterVersionSearcher>(() => new EFDocumentVersionGateway(databaseUrl));
+            RegisterExportedDependency<IDocumentVersionSearcher>(() => new EFDocumentVersionGateway(databaseUrl));
 
             RegisterExportedSingletonDependency<IBackgroundProcessor, BackgroundProcessor>();
 

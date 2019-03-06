@@ -32,7 +32,7 @@ namespace HomesEnglandTest.UseCase.CreateAsset
         {
             //arrange
             var request = TestData.UseCase.GenerateCreateAssetRequest();
-            request.SchemeId = schemeId;
+            
             _gateway.Setup(s => s.CreateAsync(It.IsAny<IDocument>())).ReturnsAsync(new Document(request));
             //act
             var useCaseResponse = await _classUnderTest.ExecuteAsync(request, CancellationToken.None);
@@ -50,7 +50,7 @@ namespace HomesEnglandTest.UseCase.CreateAsset
         {
             //arrange
             var request = TestData.UseCase.GenerateCreateAssetRequest();
-            request.SchemeId = schemeId;
+            
             _gateway.Setup(s => s.CreateAsync(It.IsAny<IDocument>())).ReturnsAsync(new Document(request));
             //act
             var useCaseResponse = await _classUnderTest.ExecuteAsync(request, CancellationToken.None);
@@ -67,7 +67,7 @@ namespace HomesEnglandTest.UseCase.CreateAsset
         {
             //arrange
             var request = TestData.UseCase.GenerateCreateAssetRequest();
-            request.SchemeId = schemeId;
+            
             _gateway.Setup(s => s.CreateAsync(It.IsAny<IDocument>())).ReturnsAsync((IDocument)null);
             //act
             //assert

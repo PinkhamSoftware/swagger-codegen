@@ -22,7 +22,7 @@ namespace HomesEngland.Gateway.Test
 
             _classUnderTest = assetGateway;
 
-            var assetRegisterContext = new AssetRegisterContext(databaseUrl);
+            var assetRegisterContext = new DocumentContext(databaseUrl);
             assetRegisterContext.Database.Migrate();
         }
 

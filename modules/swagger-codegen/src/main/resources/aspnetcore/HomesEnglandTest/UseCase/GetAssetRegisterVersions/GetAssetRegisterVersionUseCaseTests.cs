@@ -18,12 +18,12 @@ namespace HomesEnglandTest.UseCase.GetAssetRegisterVersions
     public class GetAssetRegisterVersionUseCaseTests
     {
         private IGetDocumentVersionsUseCase _classUnderTest;
-        private Mock<IAssetRegisterVersionSearcher> _mockGateway;
+        private Mock<IDocumentVersionSearcher> _mockGateway;
 
         [SetUp]
         public void Setup()
         {
-            _mockGateway = new Mock<IAssetRegisterVersionSearcher>();
+            _mockGateway = new Mock<IDocumentVersionSearcher>();
             _classUnderTest = new GetDocumentVersionsUseCase(_mockGateway.Object);
         }
 

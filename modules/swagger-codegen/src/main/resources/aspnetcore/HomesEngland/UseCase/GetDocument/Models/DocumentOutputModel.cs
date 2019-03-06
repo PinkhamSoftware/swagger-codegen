@@ -15,6 +15,7 @@ namespace HomesEngland.UseCase.GetDocument.Models
         {
             Id = document.Id;
             ModifiedDateTime = document.ModifiedDateTime;
+            DocumentVersionId = document.DocumentVersionId;
         }
     }
 }

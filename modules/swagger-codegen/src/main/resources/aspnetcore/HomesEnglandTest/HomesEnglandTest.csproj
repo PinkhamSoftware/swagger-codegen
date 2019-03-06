@@ -12,6 +12,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="UseCase\ImportAssets\**" />
+    <EmbeddedResource Remove="UseCase\ImportAssets\**" />
+    <None Remove="UseCase\ImportAssets\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="5.5.3" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
     <PackageReference Include="Moq" Version="4.10.0" />
@@ -23,6 +29,10 @@
   <ItemGroup>
     <ProjectReference Include="..\HomesEngland\HomesEngland.csproj" />
     <ProjectReference Include="..\TestHelper\TestHelper.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Domain\" />
   </ItemGroup>
 
 

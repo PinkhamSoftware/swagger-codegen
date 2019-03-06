@@ -24,7 +24,7 @@ namespace HomesEngland.Gateway.Test
 
             _classUnderTest = gateway;
 
-            var assetRegisterContext = new AssetRegisterContext(databaseUrl);
+            var assetRegisterContext = new DocumentContext(databaseUrl);
             assetRegisterContext.Database.Migrate();
         }
 

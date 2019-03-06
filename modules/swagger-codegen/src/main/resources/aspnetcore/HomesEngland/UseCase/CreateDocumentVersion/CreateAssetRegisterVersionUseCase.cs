@@ -27,7 +27,7 @@ namespace HomesEngland.UseCase.CreateDocumentVersion
 
             IDocumentVersion documentVersion = new DocumentVersion
             {
-                Assets = assets,
+                Documents = assets,
                 ModifiedDateTime = DateTime.UtcNow
             };
             Console.WriteLine($" Inserting AssetRegisterVersion Start {DateTime.UtcNow.TimeOfDay.ToString("g")}");
@@ -35,7 +35,7 @@ namespace HomesEngland.UseCase.CreateDocumentVersion
             if (result == null)
                 throw new CreateAssetRegisterVersionException();
             Console.WriteLine($" Inserting AssetRegisterVersion Finish {DateTime.UtcNow.TimeOfDay.ToString("g")}");
-            List<CreateDocumentResponse> responses = result.Assets.Select(s => new CreateDocumentResponse
+            List<CreateDocumentResponse> responses = result.Documents.Select(s => new CreateDocumentResponse
             {
                 Document = new DocumentOutputModel(s)
             }).ToList();

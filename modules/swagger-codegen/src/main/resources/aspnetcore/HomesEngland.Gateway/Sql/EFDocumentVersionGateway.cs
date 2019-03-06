@@ -46,7 +46,7 @@ namespace HomesEngland.Gateway.Sql
                 {
                     Id = documentVersionEntity.Id,
                     ModifiedDateTime = documentVersionEntity.ModifiedDateTime,
-                    Assets = documentVersionEntity.Assets?.Select(s=> new Document(s) as IDocument).ToList()
+                    Documents = documentVersionEntity.Assets?.Select(s=> new Document(s) as IDocument).ToList()
                 };
                 Console.WriteLine($"{DateTime.UtcNow.TimeOfDay.ToString("g")}: Finish Marshall Data");
                 return result;

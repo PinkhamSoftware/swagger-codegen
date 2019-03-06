@@ -31,20 +31,20 @@ namespace HomesEnglandTest.UseCase.CreateAsset
         [TestCase(1, 2)]
         [TestCase(2, 3)]
         [TestCase(3, 4)]
-        public async Task GivenValidRequest_UseCaseCallsGatewayWithCorrectDomainObject(int schemeId, int createdAssetId)
+        public async Task GivenValidRequest_UseCaseCallsGatewayWithCorrectDomainObject(int documentVersionId, int createdAssetId)
         {
             //arrange
             var request = TestData.UseCase.GenerateCreateAssetRequest();
-            request.SchemeId = schemeId;
+            request.DocumentVersionId = documentVersionId;
             _gateway.Setup(s => s.CreateAsync(It.IsAny<IDocumentVersion>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(new DocumentVersion{ Assets = new List<IDocument>(){ new Document(request)}});
+                .ReturnsAsync(new DocumentVersion{ Documents = new List<IDocument>(){ new Document(request)}});
 
             var list = new List<CreateDocumentRequest> {request};
             
             //act
             var useCaseResponse = await _classUnderTest.ExecuteAsync(list, CancellationToken.None);
             //assert
-            _gateway.Verify(s => s.CreateAsync(It.Is<IDocumentVersion>(i => i.Assets[0].SchemeId.Equals(schemeId)), It.IsAny<CancellationToken>()));
+            _gateway.Verify(s => s.CreateAsync(It.Is<IDocumentVersion>(i => i.Documents[0].DocumentVersionId.Equals(documentVersionId)), It.IsAny<CancellationToken>()));
             useCaseResponse.Should().NotBeNull();
             useCaseResponse[0].Document.Should().NotBeNull();
             useCaseResponse[0].Document.AssetOutputModelIsEqual(request);
@@ -53,13 +53,13 @@ namespace HomesEnglandTest.UseCase.CreateAsset
         [TestCase(1, 2)]
         [TestCase(2, 3)]
         [TestCase(3, 4)]
-        public async Task GivenValidRequest_UseCaseReturnsAssetOutputModels(int schemeId, int createdAssetId)
+        public async Task GivenValidRequest_UseCaseReturnsAssetOutputModels(int documentVersionId, int createdAssetId)
         {
             //arrange
             var request = TestData.UseCase.GenerateCreateAssetRequest();
-            request.SchemeId = schemeId;
+            request.DocumentVersionId = documentVersionId;
             _gateway.Setup(s => s.CreateAsync(It.IsAny<IDocumentVersion>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(new DocumentVersion { Assets = new List<IDocument>() { new Document(request) } });
+                .ReturnsAsync(new DocumentVersion { Documents = new List<IDocument>() { new Document(request) } });
             var list = new List<CreateDocumentRequest> {request};
             //act
             var useCaseResponse = await _classUnderTest.ExecuteAsync(list, CancellationToken.None);
@@ -72,11 +72,11 @@ namespace HomesEnglandTest.UseCase.CreateAsset
         [TestCase(1)]
         [TestCase(2)]
         [TestCase(3)]
-        public void GivenValidRequest_WhenGatewayReturnsNull_ThenUseCaseThrowsAssetNotCreatedException(int schemeId)
+        public void GivenValidRequest_WhenGatewayReturnsNull_ThenUseCaseThrowsAssetNotCreatedException(int documentVersionId)
         {
             //arrange
             var request = TestData.UseCase.GenerateCreateAssetRequest();
-            request.SchemeId = schemeId;
+            request.DocumentVersionId = documentVersionId;
             var list = new List<CreateDocumentRequest> {request};
             _gateway.Setup(s => s.CreateAsync(It.IsAny<IDocumentVersion>(), It.IsAny<CancellationToken>())).ReturnsAsync((IDocumentVersion)null);
             //act
@@ -91,7 +91,7 @@ namespace HomesEnglandTest.UseCase.CreateAsset
             var request = TestData.UseCase.GenerateCreateAssetRequest();
             var list = new List<CreateDocumentRequest> { request };
             _gateway.Setup(s => s.CreateAsync(It.IsAny<IDocumentVersion>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(new DocumentVersion { Assets = new List<IDocument>() { new Document(request) } });
+                .ReturnsAsync(new DocumentVersion { Documents = new List<IDocument>() { new Document(request) } });
             //act
             await _classUnderTest.ExecuteAsync(list, CancellationToken.None);
             //assert
@@ -105,11 +105,11 @@ namespace HomesEnglandTest.UseCase.CreateAsset
             var request = TestData.UseCase.GenerateCreateAssetRequest();
             var list = new List<CreateDocumentRequest> { request };
             _gateway.Setup(s => s.CreateAsync(It.IsAny<IDocumentVersion>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(new DocumentVersion { Assets = new List<IDocument>() { new Document(request) } });
+                .ReturnsAsync(new DocumentVersion { Documents = new List<IDocument>() { new Document(request) } });
             //act
             await _classUnderTest.ExecuteAsync(list, CancellationToken.None);
             //assert
-            _gateway.Verify(s => s.CreateAsync(It.Is<IDocumentVersion>(i => i.Assets[0].AssetIsEqual(request)), It.IsAny<CancellationToken>()));
+            _gateway.Verify(s => s.CreateAsync(It.Is<IDocumentVersion>(i => i.Documents[0].AssetIsEqual(request)), It.IsAny<CancellationToken>()));
         }
     }
 }

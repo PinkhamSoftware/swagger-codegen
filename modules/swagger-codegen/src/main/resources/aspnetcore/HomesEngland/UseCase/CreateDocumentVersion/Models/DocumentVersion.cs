@@ -10,7 +10,7 @@ namespace HomesEngland.UseCase.CreateDocumentVersion.Models
 
         public DateTime ModifiedDateTime { get; set; }
 
-        public virtual IList<IDocument> Assets { get; set; }
+        public virtual IList<IDocument> Documents { get; set; }
 
         public DocumentVersion()
         {
@@ -21,7 +21,7 @@ namespace HomesEngland.UseCase.CreateDocumentVersion.Models
         {
             Id = documentVersion.Id;
             ModifiedDateTime = documentVersion.ModifiedDateTime;
-            Assets = documentVersion.Assets;
+            Documents = documentVersion.Documents;
         }
     }
 }
