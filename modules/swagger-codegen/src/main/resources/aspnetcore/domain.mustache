@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 using HomesEngland.Domain;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using HomesEngland.UseCase.CreateAsset.Models;
 
 {{#models}}
 {{#model}}
@@ -20,7 +21,7 @@ namespace HomesEngland.Domain
     /// <summary>
     /// {{description}}
     /// </summary>
-    public class {{classname}}
+    public class {{classname}}: I{{classname}}
     { {{#vars}}{{#isEnum}}{{>enumClass}}{{/isEnum}}{{#items.isEnum}}{{#items}}{{>enumClass}}{{/items}}{{/items.isEnum}}
         /// <summary>
         /// {{^description}}Gets or Sets {{{name}}}{{/description}}{{#description}}{{description}}{{/description}}
