@@ -31,8 +31,10 @@ public class AspNetCoreServerCodegen extends AbstractCSharpCodegen {
         setSourceFolder("src");
         outputFolder = "generated-code" + File.separator + this.getName();
 
-        modelTemplateFiles.put("model.mustache", ".cs");
-        apiTemplateFiles.put("controller.mustache", ".cs");
+        modelTemplateFiles.put("idomain.mustache", "Interface.cs");
+        modelTemplateFiles.put("domain.mustache", ".cs");
+        modelTemplateFiles.put("entity.mustache", "Entity.cs");
+        modelTemplateFiles.put("model.mustache", "Model.cs");
 
         // contextually reserved words
         // NOTE: C# uses camel cased reserved words, while models are title cased. We don't want lowercase comparisons.
@@ -112,32 +114,6 @@ public class AspNetCoreServerCodegen extends AbstractCSharpCodegen {
 
         String packageFolder = sourceFolder + File.separator + packageName;
 
-        supportingFiles.add(new SupportingFile("NuGet.Config", "", "NuGet.Config"));
-        supportingFiles.add(new SupportingFile("build.sh.mustache", "", "build.sh"));
-        supportingFiles.add(new SupportingFile("build.bat.mustache", "", "build.bat"));
-        supportingFiles.add(new SupportingFile("README.mustache", "", "README.md"));
-        supportingFiles.add(new SupportingFile("Solution.mustache", "", this.packageName + ".sln"));
-        supportingFiles.add(new SupportingFile("Dockerfile.mustache", packageFolder, "Dockerfile"));
-        supportingFiles.add(new SupportingFile("gitignore", packageFolder, ".gitignore"));
-        supportingFiles.add(new SupportingFile("appsettings.json", packageFolder, "appsettings.json"));
-
-        supportingFiles.add(new SupportingFile("Startup.mustache", packageFolder, "Startup.cs"));
-        supportingFiles.add(new SupportingFile("Program.mustache", packageFolder, "Program.cs"));
-        supportingFiles.add(new SupportingFile("validateModel.mustache", packageFolder + File.separator + "Attributes", "ValidateModelStateAttribute.cs"));
-        supportingFiles.add(new SupportingFile("web.config", packageFolder, "web.config"));
-
-        supportingFiles.add(new SupportingFile("Project.csproj.mustache", packageFolder, this.packageName + ".csproj"));
-
-        supportingFiles.add(new SupportingFile("Properties" + File.separator + "launchSettings.json", packageFolder + File.separator + "Properties", "launchSettings.json"));
-
-        supportingFiles.add(new SupportingFile("Filters" + File.separator + "BasePathFilter.mustache", packageFolder + File.separator + "Filters", "BasePathFilter.cs"));
-        supportingFiles.add(new SupportingFile("Filters" + File.separator + "GeneratePathParamsValidationFilter.mustache", packageFolder + File.separator + "Filters", "GeneratePathParamsValidationFilter.cs"));
-
-        supportingFiles.add(new SupportingFile("wwwroot" + File.separator + "README.md", packageFolder + File.separator + "wwwroot", "README.md"));
-        supportingFiles.add(new SupportingFile("wwwroot" + File.separator + "index.html", packageFolder + File.separator + "wwwroot", "index.html"));
-        supportingFiles.add(new SupportingFile("wwwroot" + File.separator + "web.config", packageFolder + File.separator + "wwwroot", "web.config"));
-
-        supportingFiles.add(new SupportingFile("wwwroot" + File.separator + "swagger-original.mustache", packageFolder + File.separator + "wwwroot", "swagger-original.json"));
     }
 
     @Override

@@ -18,42 +18,30 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace HomesEngland.Domain
 { {{#isEnum}}{{>enumClass}}{{/isEnum}}{{^isEnum}}
 
-    /// <summary>
-    /// {{description}}
-    /// </summary>
-    public class {{classname}}CsvModel
-    { {{#vars}}{{#isEnum}}{{>enumClass}}{{/isEnum}}{{#items.isEnum}}{{#items}}{{>enumClass}}{{/items}}{{/items.isEnum}}
+    public interface I{{classname}}:IDatabaseEntity<int>
+    {
+        [Column("documentversionid")]
+        int? DocumentVersionId { get; set; }
+
+        {{#vars}}{{#isEnum}}{{>enumClass}}{{/isEnum}}{{#items.isEnum}}{{#items}}{{>enumClass}}{{/items}}{{/items.isEnum}}
         /// <summary>
         /// {{^description}}Gets or Sets {{{name}}}{{/description}}{{#description}}{{description}}{{/description}}
         /// </summary>
         {{#description}}
         /// <value>{{description}}</value>
         {{/description}}
-        [Name("{{baseName}}")]
+        {{#required}}
+        {{/required}}
+        [Column("{{baseName}}")]
         {{#isEnum}}
-        public {{{datatypeWithEnum}}}{{#isEnum}}{{^isContainer}}?{{/isContainer}}{{/isEnum}} {{name}} { get; set; }
+        {{{datatypeWithEnum}}}{{#isEnum}}{{^isContainer}}?{{/isContainer}}{{/isEnum}} {{name}} { get; set; }
         {{/isEnum}}
         {{^isEnum}}
-        public {{{datatype}}} {{name}} { get; {{#isReadOnly}}private {{/isReadOnly}}set; }
+        {{{datatype}}} {{name}} { get; {{#isReadOnly}}private {{/isReadOnly}}set; }
         {{/isEnum}}
         {{#hasMore}}
         {{/hasMore}}
         {{/vars}}
-
-        public {{classname}}(){}
-
-        public {{classname}}(Create{{classname}}Request request)
-        {
-
-            {{#vars}}
-            {{name}} = request.{{name}};
-            {{/vars}}
-        }
-        public {{classname}}(I{{classname}} document){
-            {{#vars}}
-            {{name}} = document.{{name}};
-            {{/vars}}
-        }
     }
 {{/isEnum}}
 {{/model}}

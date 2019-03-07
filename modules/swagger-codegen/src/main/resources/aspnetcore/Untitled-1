@@ -1,7 +1,0 @@
-docker run -it -v ~/temp/swagger-generated:/swagger-api/out \ 
-    -v ~/temp/swagger-definitions:/swagger-api/yaml \
-    -v ~/temp/jim:/swagger-api \
-    jimschubert/swagger-codegen-cli generate \
-    -i http://petstore.swagger.io/v2/swagger.json \
-    -l aspnetcore \
-    -o /swagger-api/out/petstore

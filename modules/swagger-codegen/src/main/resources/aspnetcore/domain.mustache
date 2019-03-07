@@ -1,4 +1,4 @@
-
+{{>partial_header}}
 using System;
 using System.Linq;
 using System.IO;
@@ -17,11 +17,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 {{#model}}
 namespace HomesEngland.Domain
 { {{#isEnum}}{{>enumClass}}{{/isEnum}}{{^isEnum}}
-
     /// <summary>
     /// {{description}}
     /// </summary>
-    public class {{classname}}CsvModel
+    public class {{classname}}
     { {{#vars}}{{#isEnum}}{{>enumClass}}{{/isEnum}}{{#items.isEnum}}{{#items}}{{>enumClass}}{{/items}}{{/items.isEnum}}
         /// <summary>
         /// {{^description}}Gets or Sets {{{name}}}{{/description}}{{#description}}{{description}}{{/description}}
@@ -44,7 +43,6 @@ namespace HomesEngland.Domain
 
         public {{classname}}(Create{{classname}}Request request)
         {
-
             {{#vars}}
             {{name}} = request.{{name}};
             {{/vars}}
