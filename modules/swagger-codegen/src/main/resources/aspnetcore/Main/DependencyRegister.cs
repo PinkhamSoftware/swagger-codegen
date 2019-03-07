@@ -115,7 +115,7 @@ namespace Main
             RegisterExportedDependency<IFactory<CreateDocumentRequest, CsvAsset>, CreateAssetRequestFactory>();
             
 
-            RegisterExportedDependency<ICreateAssetRegisterVersionUseCase, CreateAssetRegisterVersionUseCase>();
+            RegisterExportedDependency<ICreateDocumentVersionUseCase, CreateDocumentVersionUseCase>();
             RegisterExportedDependency<IDocumentVersionCreator>(() =>
                 new EFDocumentVersionGateway(databaseUrl));
             RegisterExportedDependency<IGetDocumentVersionsUseCase, GetDocumentVersionsUseCase>();

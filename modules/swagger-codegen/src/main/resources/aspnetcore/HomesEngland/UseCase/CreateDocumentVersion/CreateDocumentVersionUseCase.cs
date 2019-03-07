@@ -12,13 +12,13 @@ using HomesEngland.UseCase.GetDocument.Models;
 
 namespace HomesEngland.UseCase.CreateDocumentVersion
 {
-    public class CreateAssetRegisterVersionUseCase : ICreateAssetRegisterVersionUseCase
+    public class CreateDocumentVersionUseCase : ICreateDocumentVersionUseCase
     {
-        private readonly IDocumentVersionCreator _assetRegisterVersionCreator;
+        private readonly IDocumentVersionCreator _documentVersionCreator;
 
-        public CreateAssetRegisterVersionUseCase(IDocumentVersionCreator assetRegisterVersionCreator)
+        public CreateDocumentVersionUseCase(IDocumentVersionCreator documentVersionCreator)
         {
-            _assetRegisterVersionCreator = assetRegisterVersionCreator;
+            _documentVersionCreator = documentVersionCreator;
         }
 
         public async Task<IList<CreateDocumentResponse>> ExecuteAsync(IList<CreateDocumentRequest> requests, CancellationToken cancellationToken)
@@ -30,11 +30,11 @@ namespace HomesEngland.UseCase.CreateDocumentVersion
                 Documents = assets,
                 ModifiedDateTime = DateTime.UtcNow
             };
-            Console.WriteLine($" Inserting AssetRegisterVersion Start {DateTime.UtcNow.TimeOfDay.ToString("g")}");
-            var result = await _assetRegisterVersionCreator.CreateAsync(documentVersion, cancellationToken).ConfigureAwait(false);
+            Console.WriteLine($" Inserting Document Version Start {DateTime.UtcNow.TimeOfDay.ToString("g")}");
+            var result = await _documentVersionCreator.CreateAsync(documentVersion, cancellationToken).ConfigureAwait(false);
             if (result == null)
                 throw new CreateAssetRegisterVersionException();
-            Console.WriteLine($" Inserting AssetRegisterVersion Finish {DateTime.UtcNow.TimeOfDay.ToString("g")}");
+            Console.WriteLine($" Inserting Document Version Finish {DateTime.UtcNow.TimeOfDay.ToString("g")}");
             List<CreateDocumentResponse> responses = result.Documents.Select(s => new CreateDocumentResponse
             {
                 Document = new DocumentOutputModel(s)

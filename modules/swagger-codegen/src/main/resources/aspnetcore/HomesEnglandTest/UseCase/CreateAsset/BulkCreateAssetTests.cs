@@ -18,14 +18,14 @@ namespace HomesEnglandTest.UseCase.CreateAsset
     public class BulkCreateAssetTests
     {
 
-        private readonly ICreateAssetRegisterVersionUseCase _classUnderTest;
+        private readonly ICreateDocumentVersionUseCase _classUnderTest;
         private readonly Mock<IDocumentVersionCreator> _gateway;
 
         public BulkCreateAssetTests()
         {
             _gateway = new Mock<IDocumentVersionCreator>();
 
-            _classUnderTest = new CreateAssetRegisterVersionUseCase(_gateway.Object);
+            _classUnderTest = new CreateDocumentVersionUseCase(_gateway.Object);
         }
 
         [TestCase(1, 2)]

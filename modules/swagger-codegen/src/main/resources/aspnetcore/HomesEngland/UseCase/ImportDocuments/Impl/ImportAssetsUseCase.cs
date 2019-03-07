@@ -13,12 +13,12 @@ namespace HomesEngland.UseCase.ImportDocuments.Impl
 {
     public class ImportAssetsUseCase : IImportAssetsUseCase
     {
-        private readonly ICreateAssetRegisterVersionUseCase _createAssetRegisterVersionUseCase;
+        private readonly ICreateDocumentVersionUseCase _createDocumentVersionUseCase;
         private readonly IFactory<CreateDocumentRequest, CsvAsset> _createAssetRequestFactory;
 
-        public ImportAssetsUseCase(ICreateAssetRegisterVersionUseCase createAssetRegisterVersionUseCase, IFactory<CreateDocumentRequest, CsvAsset> createAssetRequestFactory)
+        public ImportAssetsUseCase(ICreateDocumentVersionUseCase createDocumentVersionUseCase, IFactory<CreateDocumentRequest, CsvAsset> createAssetRequestFactory)
         {
-            _createAssetRegisterVersionUseCase = createAssetRegisterVersionUseCase;
+            _createDocumentVersionUseCase = createDocumentVersionUseCase;
             _createAssetRequestFactory = createAssetRequestFactory;
         }
 
@@ -36,7 +36,7 @@ namespace HomesEngland.UseCase.ImportDocuments.Impl
             Console.WriteLine($"{DateTime.UtcNow.TimeOfDay.ToString("g")}: Finished Creating asset Requests");
 
             Console.WriteLine($"{DateTime.UtcNow.TimeOfDay.ToString("g")}: Start Creating AssetRegisterVersion");
-            var responses = await _createAssetRegisterVersionUseCase.ExecuteAsync(createAssetRequests, cancellationToken).ConfigureAwait(false);
+            var responses = await _createDocumentVersionUseCase.ExecuteAsync(createAssetRequests, cancellationToken).ConfigureAwait(false);
             Console.WriteLine($"{DateTime.UtcNow.TimeOfDay.ToString("g")}: Finished Creating AssetRegisterVersion");
 
 

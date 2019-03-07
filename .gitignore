@@ -188,3 +188,12 @@ cabal.project.local
 samples/client/petstore/elixir/_build/
 samples/client/petstore/elixir/deps/
 samples/client/petstore/elixir/mix.lock
+modules/swagger-codegen/src/main/resources/aspnetcore/AcceptanceTest/bin
+modules/swagger-codegen/src/main/resources/aspnetcore/AcceptanceTest/obj
+modules/swagger-codegen/src/main/resources/aspnetcore/DependencyInjection/bin
+modules/swagger-codegen/src/main/resources/aspnetcore/DependencyInjection/obj
+modules/swagger-codegen/src/main/resources/aspnetcore/HomesEngland/obj
+modules/swagger-codegen/src/main/resources/aspnetcore/HomesEngland/bin
+modules/swagger-codegen/src/main/resources/aspnetcore/HomesEngland.AssetImporter/obj
+modules/swagger-codegen/src/main/resources/aspnetcore/HomesEngland.Gateway/obj
+modules/swagger-codegen/src/main/resources/aspnetcore/HomesEngland.Gateway/bin

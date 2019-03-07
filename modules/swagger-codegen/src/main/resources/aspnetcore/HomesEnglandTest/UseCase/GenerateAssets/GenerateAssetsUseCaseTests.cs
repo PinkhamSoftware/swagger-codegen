@@ -17,12 +17,12 @@ namespace HomesEnglandTest.UseCase.GenerateAssets
     public class GenerateAssetsUseCaseTest
     {
         private IGenerateDocumentsUseCase _classUnderTest;
-        private Mock<ICreateAssetRegisterVersionUseCase> _mockUseCase;
+        private Mock<ICreateDocumentVersionUseCase> _mockUseCase;
 
         [SetUp]
         public void Setup()
         {
-            _mockUseCase = new Mock<ICreateAssetRegisterVersionUseCase>();
+            _mockUseCase = new Mock<ICreateDocumentVersionUseCase>();
             
             _classUnderTest = new GenerateDocumentsUseCase(_mockUseCase.Object);
         }

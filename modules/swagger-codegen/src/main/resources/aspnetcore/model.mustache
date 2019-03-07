@@ -15,13 +15,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 {{#models}}
 {{#model}}
-namespace {{packageName}}.Models
+namespace HomesEngland.Domain
 { {{#isEnum}}{{>enumClass}}{{/isEnum}}{{^isEnum}}
     /// <summary>
     /// {{description}}
     /// </summary>
     [Table("{{classname}}")]
-    public partial class {{classname}}Entity : IDocument
+    public partial class {{classname}}Entity : I{{classname}}
     { 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -49,37 +49,47 @@ namespace {{packageName}}.Models
         {{/hasMore}}
         {{/vars}}
 
-        public {{classname}}Entity(IDocument document){
+        public {{classname}}Entity(I{{classname}} document){
+        }
+
+        public {{classname}}Entity(I{{classname}} document){
             {{#vars}}
             {{name}} = document.{{name}};
             {{/vars}}
         }
 
-        /// <summary>
-        /// Returns the string presentation of the object
-        /// </summary>
-        /// <returns>String presentation of the object</returns>
-        public override string ToString()
+        public {{classname}}Entity(Create{{classname}}Request request)
         {
-            var sb = new StringBuilder();
-            sb.Append("class {{classname}} {\n");
+            // todo map to document
             {{#vars}}
-            sb.Append("  {{name}}: ").Append({{name}}).Append("\n");
+            {{name}} = request.{{name}};
             {{/vars}}
-            sb.Append("}\n");
-            return sb.ToString();
         }
+    }
 
+    public interface I{{classname}}:IDatabaseEntity<int>
+    {
+        int? DocumentVersionId { get; set; }
+        //todo vars here
+        {{#vars}}{{#isEnum}}{{>enumClass}}{{/isEnum}}{{#items.isEnum}}{{#items}}{{>enumClass}}{{/items}}{{/items.isEnum}}
         /// <summary>
-        /// Returns the JSON string presentation of the object
+        /// {{^description}}Gets or Sets {{{name}}}{{/description}}{{#description}}{{description}}{{/description}}
         /// </summary>
-        /// <returns>JSON string presentation of the object</returns>
-        public {{#parent}} new {{/parent}}string ToJson()
-        {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
-        }
-
-
+        {{#description}}
+        /// <value>{{description}}</value>
+        {{/description}}
+        {{#required}}
+        {{/required}}
+        [Column("{{baseName}}")]
+        {{#isEnum}}
+        public {{{datatypeWithEnum}}}{{#isEnum}}{{^isContainer}}?{{/isContainer}}{{/isEnum}} {{name}} { get; set; }
+        {{/isEnum}}
+        {{^isEnum}}
+        public {{{datatype}}} {{name}} { get; {{#isReadOnly}}private {{/isReadOnly}}set; }
+        {{/isEnum}}
+        {{#hasMore}}
+        {{/hasMore}}
+        {{/vars}}
     }
 
     /// <summary>
