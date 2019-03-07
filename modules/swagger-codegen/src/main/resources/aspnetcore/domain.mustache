@@ -22,7 +22,12 @@ namespace HomesEngland.Domain
     /// {{description}}
     /// </summary>
     public class {{classname}}: I{{classname}}
-    { {{#vars}}{{#isEnum}}{{>enumClass}}{{/isEnum}}{{#items.isEnum}}{{#items}}{{>enumClass}}{{/items}}{{/items.isEnum}}
+    { 
+        public int Id { get; set; }
+        public DateTime ModifiedDateTime { get; set; }
+        public int? DocumentVersionId { get; set; }
+        
+        {{#vars}}{{#isEnum}}{{>enumClass}}{{/isEnum}}{{#items.isEnum}}{{#items}}{{>enumClass}}{{/items}}{{/items.isEnum}}
         /// <summary>
         /// {{^description}}Gets or Sets {{{name}}}{{/description}}{{#description}}{{description}}{{/description}}
         /// </summary>
