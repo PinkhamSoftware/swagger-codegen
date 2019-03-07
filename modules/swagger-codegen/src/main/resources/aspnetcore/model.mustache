@@ -12,10 +12,11 @@ using Newtonsoft.Json;
 using HomesEngland.Domain;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using HomesEngland.UseCase.CreateAsset.Models;
 
 {{#models}}
 {{#model}}
-namespace HomesEngland.Domain
+namespace HomesEngland.UseCase.ImportDocuments.Models
 { {{#isEnum}}{{>enumClass}}{{/isEnum}}{{^isEnum}}
 
     /// <summary>

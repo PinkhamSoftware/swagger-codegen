@@ -12,16 +12,17 @@ using Newtonsoft.Json;
 using HomesEngland.Domain;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using HomesEngland.Domain;
 
 {{#models}}
 {{#model}}
-namespace HomesEngland.Domain
+namespace HomesEngland.Gateway
 { {{#isEnum}}{{>enumClass}}{{/isEnum}}{{^isEnum}}
     /// <summary>
     /// {{description}}
     /// </summary>
     [Table("{{classname}}")]
-    public partial class {{classname}}Entity : I{{classname}}
+    public class {{classname}}Entity : I{{classname}}
     { 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
