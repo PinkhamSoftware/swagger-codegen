@@ -1,0 +1,43 @@
+
+using System;
+using HomesEngland.Domain;
+
+{{#models}}
+{{#model}}
+namespace HomesEngland.UseCase.GetDocument.Models
+{ {{#isEnum}}{{>enumClass}}{{/isEnum}}{{^isEnum}}
+
+    /// <summary>
+    /// {{description}}
+    /// </summary>
+    public class Create{{classname}}Request
+    { 
+        {{#vars}}{{#isEnum}}{{>enumClass}}{{/isEnum}}{{#items.isEnum}}{{#items}}{{>enumClass}}{{/items}}{{/items.isEnum}}
+        /// <summary>
+        /// {{^description}}Gets or Sets {{{name}}}{{/description}}{{#description}}{{description}}{{/description}}
+        /// </summary>
+        {{#description}}
+        /// <value>{{description}}</value>
+        {{/description}}
+        {{#isEnum}}
+        public {{{datatypeWithEnum}}}{{#isEnum}}{{^isContainer}}?{{/isContainer}}{{/isEnum}} {{name}} { get; set; }
+        {{/isEnum}}
+        {{^isEnum}}
+        public {{{datatype}}} {{name}} { get; {{#isReadOnly}}private {{/isReadOnly}}set; }
+        {{/isEnum}}
+        {{#hasMore}}
+        {{/hasMore}}
+        {{/vars}}
+
+        public Create{{classname}}Request(){}
+
+        public Create{{classname}}Request({{classname}}CsvModel document){
+            {{#vars}}
+            {{name}} = document.{{name}};
+            {{/vars}}
+        }
+    }
+{{/isEnum}}
+{{/model}}
+{{/models}}
+}

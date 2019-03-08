@@ -41,16 +41,16 @@ namespace HomesEngland.UseCase.ImportDocuments.Models
         {{/hasMore}}
         {{/vars}}
 
-        public {{classname}}(){}
+        public {{classname}}CsvModel(){}
 
-        public {{classname}}(Create{{classname}}Request request)
+        public {{classname}}CsvModel(Create{{classname}}Request request)
         {
-
             {{#vars}}
             {{name}} = request.{{name}};
             {{/vars}}
         }
-        public {{classname}}(I{{classname}} document){
+        
+        public {{classname}}CsvModel(I{{classname}} document){
             {{#vars}}
             {{name}} = document.{{name}};
             {{/vars}}

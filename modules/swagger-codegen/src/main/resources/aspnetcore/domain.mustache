@@ -54,6 +54,9 @@ namespace HomesEngland.Domain
             {{/vars}}
         }
         public {{classname}}(I{{classname}} document){
+            Id = document.Id;
+            ModifiedDateTime = document.ModifiedDateTime;
+            DocumentVersionId = document.DocumentVersionId;
             {{#vars}}
             {{name}} = document.{{name}};
             {{/vars}}

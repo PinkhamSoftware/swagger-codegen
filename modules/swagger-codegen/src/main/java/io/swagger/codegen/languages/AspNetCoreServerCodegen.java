@@ -35,6 +35,8 @@ public class AspNetCoreServerCodegen extends AbstractCSharpCodegen {
         modelTemplateFiles.put("domain.mustache", ".cs");
         modelTemplateFiles.put("entity.mustache", "Entity.cs");
         modelTemplateFiles.put("model.mustache", "CsvModel.cs");
+        modelTemplateFiles.put("outputModel.mustache", "OutputModel.cs");
+        modelTemplateFiles.put("createDomainRequest.mustache", "Request.cs");
 
         // contextually reserved words
         // NOTE: C# uses camel cased reserved words, while models are title cased. We don't want lowercase comparisons.

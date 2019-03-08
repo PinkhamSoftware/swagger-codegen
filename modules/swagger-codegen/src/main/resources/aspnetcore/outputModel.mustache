@@ -1,42 +1,20 @@
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
-using System.Runtime.Serialization;
-using Newtonsoft.Json;
-using HomesEngland.Domain;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using HomesEngland.Domain;
 
 {{#models}}
 {{#model}}
-namespace HomesEngland.Gateway
+namespace HomesEngland.UseCase.GetDocument.Models
 { {{#isEnum}}{{>enumClass}}{{/isEnum}}{{^isEnum}}
+
     /// <summary>
     /// {{description}}
     /// </summary>
-    [Table("{{classname}}")]
-    public class {{classname}}Entity : I{{classname}}
+    public class {{classname}}OutputModel
     { 
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Column("id")]
         public int Id { get; set; }
-        [Column("modifieddatetime")]
         public DateTime ModifiedDateTime { get; set; }
-
-        [Column("documentversionid")]
         public int? DocumentVersionId { get; set; }
-
-        [ForeignKey("documentversionid")]
-        public DocumentVersionEntity DocumentVersion { get; set; }
-        
         {{#vars}}{{#isEnum}}{{>enumClass}}{{/isEnum}}{{#items.isEnum}}{{#items}}{{>enumClass}}{{/items}}{{/items.isEnum}}
         /// <summary>
         /// {{^description}}Gets or Sets {{{name}}}{{/description}}{{#description}}{{description}}{{/description}}
@@ -44,9 +22,6 @@ namespace HomesEngland.Gateway
         {{#description}}
         /// <value>{{description}}</value>
         {{/description}}
-        {{#required}}
-        {{/required}}
-        [Column("{{baseName}}")]
         {{#isEnum}}
         public {{{datatypeWithEnum}}}{{#isEnum}}{{^isContainer}}?{{/isContainer}}{{/isEnum}} {{name}} { get; set; }
         {{/isEnum}}
@@ -57,9 +32,9 @@ namespace HomesEngland.Gateway
         {{/hasMore}}
         {{/vars}}
 
-        public {{classname}}Entity(){}
+        public {{classname}}OutputModel(){}
 
-        public {{classname}}Entity(I{{classname}} document){
+        public {{classname}}OutputModel(I{{classname}} document){
             Id = document.Id;
             ModifiedDateTime = document.ModifiedDateTime;
             DocumentVersionId = document.DocumentVersionId;
