@@ -25,6 +25,7 @@ namespace HomesEngland.Domain
     { 
         public int Id { get; set; }
         public DateTime ModifiedDateTime { get; set; }
+
         public int? DocumentVersionId { get; set; }
         
         {{#vars}}{{#isEnum}}{{>enumClass}}{{/isEnum}}{{#items.isEnum}}{{#items}}{{>enumClass}}{{/items}}{{/items.isEnum}}

@@ -21,32 +21,24 @@ namespace HomesEngland.Gateway
     /// <summary>
     /// {{description}}
     /// </summary>
-    [Table("{{classname}}")]
     public class {{classname}}Entity : I{{classname}}
     { 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Column("id")]
         public int Id { get; set; }
-        [Column("modifieddatetime")]
         public DateTime ModifiedDateTime { get; set; }
 
-        [Column("documentversionid")]
         public int? DocumentVersionId { get; set; }
 
-        [ForeignKey("documentversionid")]
-        public DocumentVersionEntity DocumentVersion { get; set; }
+        [ForeignKey("DocumentVersionId")]
+        public DocumentVersionEntity DocumentVersionEntity { get; set; }
         
         {{#vars}}{{#isEnum}}{{>enumClass}}{{/isEnum}}{{#items.isEnum}}{{#items}}{{>enumClass}}{{/items}}{{/items.isEnum}}
-        /// <summary>
-        /// {{^description}}Gets or Sets {{{name}}}{{/description}}{{#description}}{{description}}{{/description}}
-        /// </summary>
         {{#description}}
         /// <value>{{description}}</value>
         {{/description}}
         {{#required}}
         {{/required}}
-        [Column("{{baseName}}")]
         {{#isEnum}}
         public {{{datatypeWithEnum}}}{{#isEnum}}{{^isContainer}}?{{/isContainer}}{{/isEnum}} {{name}} { get; set; }
         {{/isEnum}}

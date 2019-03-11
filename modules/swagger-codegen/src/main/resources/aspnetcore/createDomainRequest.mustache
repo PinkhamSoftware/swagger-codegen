@@ -14,9 +14,6 @@ HomesEngland.UseCase.CreateAsset.Models
     public class Create{{classname}}Request
     { 
         {{#vars}}{{#isEnum}}{{>enumClass}}{{/isEnum}}{{#items.isEnum}}{{#items}}{{>enumClass}}{{/items}}{{/items.isEnum}}
-        /// <summary>
-        /// {{^description}}Gets or Sets {{{name}}}{{/description}}{{#description}}{{description}}{{/description}}
-        /// </summary>
         {{#description}}
         /// <value>{{description}}</value>
         {{/description}}
