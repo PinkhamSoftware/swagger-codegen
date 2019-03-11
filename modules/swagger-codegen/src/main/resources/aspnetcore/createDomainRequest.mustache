@@ -1,10 +1,11 @@
 
 using System;
 using HomesEngland.Domain;
+using HomesEngland.UseCase.ImportDocuments.Models;
 
 {{#models}}
 {{#model}}
-namespace HomesEngland.UseCase.GetDocument.Models
+HomesEngland.UseCase.CreateAsset.Models
 { {{#isEnum}}{{>enumClass}}{{/isEnum}}{{^isEnum}}
 
     /// <summary>
